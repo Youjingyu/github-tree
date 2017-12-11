@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {observer} from 'mobx-react';
 import TreeView from '../../../node_modules/react-treeview/lib/react-treeview';
-import '../../../node_modules/react-treeview/react-treeview.css';
-import './style.less'
+import './style.css'
 
 @observer
 class Tree extends Component{
