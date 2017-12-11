@@ -81,13 +81,15 @@ class TreeStore {
       for(let key in obj){
         // 保存节点的index，后续使用该index插入数组，达到按顺序遍历数组的目的
         index = obj[key].index;
-        nodeObj = {};
-        // 如果是遍历到树的最底部，一对象的形式保存（因为后续会用到对象的key）
+        nodeObj = {
+          name: key
+        };
+        // 如果是遍历到树的最底部，直接保存该节点
         if(obj[key].item){
-          nodeObj[key] = obj[key];
+          nodeObj.item = obj[key].item;
         } else {
           // 如果还没有到达树的底部，继续递归
-          nodeObj[key] = objToArr(obj[key], []);
+          nodeObj.children = objToArr(obj[key], []);
         }
         // 插入数组
         arr[index] = nodeObj;

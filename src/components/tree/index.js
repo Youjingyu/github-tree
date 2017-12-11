@@ -9,28 +9,22 @@ class Tree extends Component{
   render() {
     return (
       <div>
-        {this.props.treeData.map((node, i) => {
-          console.log(node.name);
-          return (<span>{node.name}</span>)
-          // const type = node.type;
-          // const label = <span className="node">{type}</span>;
-          // return (
-          //   <TreeView key={type + '|' + i} nodeLabel={label} defaultCollapsed={false}>
-          //     {node.people.map(person => {
-          //       const label2 = <span className="node">{person.name}</span>;
-          //       return (
-          //         <TreeView nodeLabel={label2} key={person.name} defaultCollapsed={false}>
-          //           <div className="info">age: {person.age}</div>
-          //           <div className="info">sex: {person.sex}</div>
-          //           <div className="info">role: {person.role}</div>
-          //         </TreeView>
-          //       );
-          //     })}
-          //   </TreeView>
-          // );
-        })}
+        { this.renderTree(this.props.treeData) }
       </div>
     );
+  }
+  renderTree(data){
+    return data.map((node, i)=>{
+      const label = (<span className="node">{node.name}</span>);
+      if(node.children){
+        return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true}>
+          { this.renderTree(node.children) }
+        </TreeView>)
+      } else {
+        return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true} />)
+      }
+    });
+
   }
 }
 
