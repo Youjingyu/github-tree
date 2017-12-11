@@ -13,8 +13,14 @@ class fetch {
   setUrlPath(path){
     this.baseUrl = this.baseUrl + path;
   }
-  getTreeData() {
-    return axios.get(this.baseUrl + '/contents');
+  getTreeData(sha) {
+    return axios.get(this.baseUrl + '/git/trees/' + sha + '?recursive=1');
+  }
+  // getRefs(branch) {
+  //   return axios.get(this.baseUrl + '/git/refs/heads/' + branch);
+  // }
+  getBranches(){
+    return axios.get(this.baseUrl + '/branches');
   }
 }
 
