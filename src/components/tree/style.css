@@ -1,6 +1,9 @@
 /* the tree node's style */
 .tree-view {
+  margin: 5px 0;
   overflow-y: hidden;
+  cursor: pointer;
+  color: #1DB0D8;
 }
 
 .tree-view_item {
@@ -17,7 +20,6 @@
 }
 
 .tree-view_arrow {
-  cursor: pointer;
   margin-right: 6px;
   display: inline-block;
   -webkit-user-select: none;
@@ -36,4 +38,15 @@
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
+}
+
+.folder{
+}
+
+.folder:before{
+  content: '';
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background: url("./folder.png") no-repeat center/100% 100%;
 }

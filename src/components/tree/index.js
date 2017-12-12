@@ -14,13 +14,13 @@ class Tree extends Component{
   }
   renderTree(data){
     return data.map((node, i)=>{
-      const label = (<span className="node">{node.name}</span>);
+      const label = (<span className="folder">{node.name}</span>);
       if(node.children){
         return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true}>
           { this.renderTree(node.children) }
         </TreeView>)
       } else {
-        return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true} />)
+        return (<div key={i} className="tree-view">{node.name}</div>)
       }
     });
 
