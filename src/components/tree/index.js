@@ -7,20 +7,20 @@ import './style.css'
 class Tree extends Component{
   render() {
     return (
-      <div>
+      <div className="tree-container">
         { this.renderTree(this.props.treeData) }
       </div>
     );
   }
   renderTree(data){
     return data.map((node, i)=>{
-      const label = (<span className="folder">{node.name}</span>);
+      const label = (<span className="node">{node.name}</span>);
       if(node.children){
         return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true}>
           { this.renderTree(node.children) }
         </TreeView>)
       } else {
-        return (<div key={i} className="tree-view">{node.name}</div>)
+        return (<div key={i} className="tree-view_item node file">{node.name}</div>)
       }
     });
 

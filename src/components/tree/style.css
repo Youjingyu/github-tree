@@ -1,12 +1,21 @@
+.tree-container{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0 5px;
+  width: 300px;
+  overflow: auto;
+  background-color: #00343F;
+}
+
 /* the tree node's style */
 .tree-view {
-  margin: 5px 0;
-  overflow-y: hidden;
-  cursor: pointer;
-  color: #1DB0D8;
 }
 
 .tree-view_item {
+  margin: 5px 0;
+  cursor: pointer;
+  color: #1DB0D8;
   /* immediate child of .tree-view, for styling convenience */
 }
 
@@ -40,13 +49,29 @@
   transform: rotate(-90deg);
 }
 
-.folder{
+.node{
+  white-space: nowrap;
 }
 
-.folder:before{
+.node:before{
   content: '';
   display: inline-block;
+  margin-right: 5px;
+  height: 22px;
+  width: 22px;
+  background: url("./folder.png") no-repeat center/100% 100%;
+}
+
+.tree-view_children > .file{
+  margin-left: 10px;
+}
+
+.file{
+  color: #168FAF;
+}
+
+.file:before{
   height: 16px;
   width: 16px;
-  background: url("./folder.png") no-repeat center/100% 100%;
+  background-image: url("./file.png");
 }
