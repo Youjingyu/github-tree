@@ -14,16 +14,39 @@ class Tree extends Component{
   }
   renderTree(data){
     return data.map((node, i)=>{
-      const label = (<span className="node">{node.name}</span>);
       if(node.children){
-        return (<TreeView key={i} nodeLabel={label} defaultCollapsed={true}>
-          { this.renderTree(node.children) }
-        </TreeView>)
+        return (
+          <MyTreeView key={i} text={node.name}>
+            { this.renderTree(node.children) }
+          </MyTreeView>
+        )
       } else {
         return (<div key={i} className="tree-view_item node file">{node.name}</div>)
       }
     });
 
+  }
+}
+
+class MyTreeView extends Component {
+  constructor(){
+    super();
+    this.state = {
+      collapsed: true
+    }
+  }
+  render(){
+    const label = (<span className="node" onClick={this.click}>{this.props.text}</span>);
+    return (
+      <TreeView nodeLabel={label} collapsed={this.state.collapsed} onClick={this.click}>
+        { this.props.children }
+      </TreeView>
+    )
+  }
+  click = ()=>{
+    this.setState((prevState)=>({
+      collapsed: !prevState.collapsed
+    }));
   }
 }
 
