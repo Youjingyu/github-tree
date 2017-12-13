@@ -78,6 +78,7 @@ class TreeStore {
       delete obj.index;
       delete obj.length;
       let nodeObj, index;
+      let fileArr = [], folderArr = [];
       for(let key in obj){
         // 保存节点的index，后续使用该index插入数组，达到按顺序遍历数组的目的
         index = obj[key].index;
@@ -85,16 +86,27 @@ class TreeStore {
           name: key
         };
         // 如果是遍历到树的最底部，直接保存该节点
-        if(obj[key].item){
+        if(obj[key].item || obj[key].length === 0){
           nodeObj.item = obj[key].item;
         } else {
           // 如果还没有到达树的底部，继续递归
           nodeObj.children = objToArr(obj[key], []);
         }
-        // 插入数组
-        arr[index] = nodeObj;
+        // 按照索引插入数组
+        if(obj[key].item){
+          // 有item说明是文件
+          fileArr[index] = nodeObj;
+        } else {
+          folderArr[index] = nodeObj;
+        }
       }
-      return arr;
+      // 过滤数组中不存的项
+      fileArr = fileArr.filter(filterArr);
+      folderArr = folderArr.filter(filterArr);
+      return folderArr.concat(fileArr);
+    }
+    function filterArr(currentValue) {
+      return currentValue !== undefined;
     }
   }
 }
