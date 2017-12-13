@@ -21,7 +21,7 @@ class TreeStore {
   }
   @action
   async getTreeData() {
-    const treeData = await fetch.getTreeData('eb2334713e90342e6f90f9a4288075d588845d72');
+    const treeData = await fetch.getTreeData();
     runInAction(()=>{
       this.treeData = this._parseData(treeData.tree);
     })
