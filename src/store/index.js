@@ -7,6 +7,7 @@ class TreeStore {
   @observable urlPath = '';
   @observable slideOut = true;
   @observable treeData = [];
+  @observable codeSrc = '';
 
   constructor(){
     autorun(()=>{
@@ -18,6 +19,9 @@ class TreeStore {
   }
   @action	toggleSlideOut() {
     this.slideOut = !this.slideOut;
+  }
+  @action	setCodeSrc(src) {
+    this.codeSrc = src;
   }
   @action
   async getTreeData() {

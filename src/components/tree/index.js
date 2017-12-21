@@ -20,11 +20,16 @@ class Tree extends Component{
             { this.renderTree(node.children) }
           </MyTreeView>
         )
-      } else {
-        return (<div key={i} className="tree-view_item node file">{node.name}</div>)
+      } else {  
+        return (
+          <div key={i} onClick={this.viewCode.bind(this, node.item.url)}
+            className="tree-view_item node file">{node.name}</div>
+        )
       }
     });
-
+  }
+  viewCode(url){
+    this.props.viewCode(url);
   }
 }
 

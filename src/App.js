@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {observer} from 'mobx-react';
 import './style/App.css';
-import { Tree } from './components';
+import { Tree, CodePreview } from './components';
 import treeStore from './store';
 
 @observer
@@ -16,7 +16,12 @@ class App extends Component {
   }
   render() {
     if(this.repo){
-      return (<Tree treeData={treeStore.treeData}/>)
+      return (
+        <div>
+          <Tree treeData={treeStore.treeData}/>
+          <CodePreview codeSrc={treeStore.codeSrc} viewCode={treeStore.setCodeSrc}/>
+        </div>
+    )
     } else {
       return (
         <div>
